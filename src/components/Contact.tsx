@@ -85,25 +85,36 @@ const Contact: React.FC = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-white dark:bg-gray-900">
+    <section id="contact" className="py-16 bg-gradient-to-br from-sky-50 to-white dark:from-black dark:to-gray-900">
       <div className="container-max section-padding">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            Get In <span className="text-gradient">Touch</span>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="inline-flex items-center gap-2 bg-sky-100 dark:bg-sky-900/30 px-4 py-2 rounded-lg shadow-md border border-sky-200 dark:border-sky-700 mb-6"
+          >
+            <span className="text-lg">📧</span>
+            <span className="text-sky-600 dark:text-sky-400 font-medium text-sm">Get In Touch</span>
+          </motion.div>
+          
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            Let's <span className="text-gradient">Connect</span>
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Have a project in mind or just want to chat? I'd love to hear from you. 
-            Let's create something amazing together!
+          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            Ready to discuss your project or explore collaboration opportunities? 
+            I'd love to hear from you.
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid lg:grid-cols-2 gap-8">
           {/* Contact Information */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -113,17 +124,16 @@ const Contact: React.FC = () => {
             className="space-y-8"
           >
             <div>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
                 Let's start a conversation
               </h3>
-              <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-8">
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
                 I'm always interested in hearing about new projects and opportunities. 
-                Whether you're a company looking to hire, or you're a fellow developer 
-                wanting to collaborate, I'd love to hear from you.
+                Whether you're looking to hire or collaborate, let's connect.
               </p>
             </div>
 
-            <div className="space-y-6">
+            <div className="space-y-4">
               {contactInfo.map((info, index) => (
                 <motion.div
                   key={info.label}
@@ -131,17 +141,17 @@ const Contact: React.FC = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
-                  className="flex items-center space-x-4"
+                  className="flex items-center space-x-3"
                 >
-                  <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-2xl flex items-center justify-center">
-                    <info.icon size={20} className="text-blue-600 dark:text-blue-400" />
+                  <div className="w-10 h-10 bg-sky-100 dark:bg-sky-900/30 rounded-lg flex items-center justify-center">
+                    <info.icon size={18} className="text-sky-600 dark:text-sky-400" />
                   </div>
                   <div>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">{info.label}</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">{info.label}</p>
                     <motion.a
                       href={info.href}
-                      whileHover={{ scale: 1.05 }}
-                      className="text-gray-900 dark:text-white font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300"
+                      whileHover={{ scale: 1.02 }}
+                      className="text-gray-900 dark:text-white font-medium hover:text-sky-600 dark:hover:text-sky-400 transition-colors duration-300 text-sm"
                     >
                       {info.value}
                     </motion.a>
@@ -158,12 +168,12 @@ const Contact: React.FC = () => {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <form onSubmit={handleSubmit} className="card space-y-6">
+            <form onSubmit={handleSubmit} className="card space-y-4">
               {isSubmitted && (
                 <motion.div
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="flex items-center space-x-2 p-4 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 rounded-2xl"
+                  className="flex items-center space-x-2 p-3 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 rounded-lg text-sm"
                 >
                   <CheckCircle size={20} />
                   <span>Thank you! Your message has been sent successfully.</span>
@@ -180,10 +190,10 @@ const Contact: React.FC = () => {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  className={`w-full px-4 py-3 rounded-2xl border-2 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500/20 ${
+                  className={`w-full px-3 py-2.5 rounded-lg border-2 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-sky-500/20 ${
                     errors.name
                       ? 'border-red-300 dark:border-red-600 bg-red-50 dark:bg-red-900/10'
-                      : 'border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 focus:border-blue-500'
+                      : 'border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 focus:border-sky-500'
                   } text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400`}
                   placeholder="Enter your full name"
                 />
@@ -209,10 +219,10 @@ const Contact: React.FC = () => {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className={`w-full px-4 py-3 rounded-2xl border-2 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500/20 ${
+                  className={`w-full px-3 py-2.5 rounded-lg border-2 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-sky-500/20 ${
                     errors.email
                       ? 'border-red-300 dark:border-red-600 bg-red-50 dark:bg-red-900/10'
-                      : 'border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 focus:border-blue-500'
+                      : 'border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 focus:border-sky-500'
                   } text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400`}
                   placeholder="Enter your email address"
                 />
@@ -238,10 +248,10 @@ const Contact: React.FC = () => {
                   rows={5}
                   value={formData.message}
                   onChange={handleChange}
-                  className={`w-full px-4 py-3 rounded-2xl border-2 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500/20 resize-none ${
+                  className={`w-full px-3 py-2.5 rounded-lg border-2 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-sky-500/20 resize-none ${
                     errors.message
                       ? 'border-red-300 dark:border-red-600 bg-red-50 dark:bg-red-900/10'
-                      : 'border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 focus:border-blue-500'
+                      : 'border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 focus:border-sky-500'
                   } text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400`}
                   placeholder="Tell me about your project or just say hello!"
                 />
@@ -273,7 +283,7 @@ const Contact: React.FC = () => {
                   </>
                 ) : (
                   <>
-                    <Send size={20} />
+                    <Send size={18} />
                     Send Message
                   </>
                 )}

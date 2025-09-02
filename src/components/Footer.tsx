@@ -31,7 +31,7 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-gray-900 dark:bg-black text-white py-12">
+    <footer className="bg-gray-900 dark:bg-black text-white py-10">
       <div className="container-max section-padding">
         <div className="text-center">
           <motion.div
@@ -42,14 +42,14 @@ const Footer: React.FC = () => {
           >
             <motion.button
               onClick={scrollToTop}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="text-3xl font-bold text-gradient mb-6 cursor-pointer"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="text-2xl font-bold text-gradient mb-4 cursor-pointer"
             >
-              Portfolio
+              Heet.dev
             </motion.button>
             
-            <p className="text-gray-400 mb-8 max-w-md mx-auto">
+            <p className="text-gray-400 mb-6 max-w-md mx-auto text-sm">
               Thanks for visiting my portfolio. Let's connect and create something amazing together!
             </p>
           </motion.div>
@@ -59,7 +59,7 @@ const Footer: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex justify-center space-x-6 mb-8"
+            className="flex justify-center space-x-4 mb-6"
           >
             {socialLinks.map((link) => (
               <motion.a
@@ -67,12 +67,12 @@ const Footer: React.FC = () => {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                whileHover={{ scale: 1.2, y: -5 }}
+                whileHover={{ scale: 1.1, y: -2 }}
                 whileTap={{ scale: 0.9 }}
-                className="p-3 bg-gray-800 hover:bg-gray-700 rounded-full transition-all duration-300 hover:shadow-lg"
+                className="p-2.5 bg-gray-800 hover:bg-sky-600 rounded-lg transition-all duration-300 hover:shadow-md"
                 aria-label={link.label}
               >
-                <link.icon size={20} />
+                <link.icon size={18} />
               </motion.a>
             ))}
           </motion.div>
@@ -82,23 +82,23 @@ const Footer: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="border-t border-gray-800 pt-8"
+            className="border-t border-gray-800 pt-6"
           >
-            <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-              <p className="text-gray-400 text-sm">
+            <div className="flex flex-col md:flex-row justify-between items-center space-y-3 md:space-y-0">
+              <p className="text-gray-400 text-xs">
                 © {new Date().getFullYear()} Heet Viradiya. All rights reserved.
               </p>
               
               <motion.div
-                className="flex items-center space-x-1 text-gray-400 text-sm"
-                whileHover={{ scale: 1.05 }}
+                className="flex items-center space-x-1 text-gray-400 text-xs"
+                whileHover={{ scale: 1.02 }}
               >
                 <span>Made with</span>
                 <motion.div
-                  animate={{ scale: [1, 1.2, 1] }}
+                  animate={{ scale: [1, 1.1, 1] }}
                   transition={{ duration: 1, repeat: Infinity }}
                 >
-                  <Heart size={16} className="text-red-500 fill-current" />
+                  <Heart size={14} className="text-red-500 fill-current" />
                 </motion.div>
                 <span>using React & Tailwind CSS</span>
               </motion.div>

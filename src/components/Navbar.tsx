@@ -47,10 +47,10 @@ const Navbar: React.FC = () => {
         <div className="flex items-center justify-between h-16">
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="text-2xl font-bold text-gradient cursor-pointer"
+            className="text-2xl font-black text-gradient cursor-pointer"
             onClick={() => scrollToSection('#home')}
           >
-            Portfolio
+            Heet.dev
           </motion.div>
 
           {/* Desktop Navigation */}
@@ -61,7 +61,7 @@ const Navbar: React.FC = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => scrollToSection(item.href)}
-                className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300"
+                className="text-gray-700 dark:text-gray-300 hover:text-sky-600 dark:hover:text-sky-400 transition-colors duration-300 font-medium"
               >
                 {item.name}
               </motion.button>
@@ -70,7 +70,7 @@ const Navbar: React.FC = () => {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={toggleTheme}
-              className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-300"
+              className="p-2 rounded-lg bg-sky-100 dark:bg-sky-900/30 text-sky-600 dark:text-sky-400 hover:bg-sky-200 dark:hover:bg-sky-800/50 transition-all duration-300 shadow-md hover:shadow-sky-500/25"
             >
               {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
             </motion.button>
@@ -82,7 +82,7 @@ const Navbar: React.FC = () => {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={toggleTheme}
-              className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300"
+              className="p-2 rounded-lg bg-sky-100 dark:bg-sky-900/30 text-sky-600 dark:text-sky-400 shadow-md"
             >
               {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
             </motion.button>
@@ -90,7 +90,7 @@ const Navbar: React.FC = () => {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300"
+              className="p-2 rounded-lg bg-sky-100 dark:bg-sky-900/30 text-sky-600 dark:text-sky-400 shadow-md"
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </motion.button>
@@ -104,7 +104,7 @@ const Navbar: React.FC = () => {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="md:hidden bg-white dark:bg-gray-900 rounded-2xl mt-4 shadow-lg overflow-hidden"
+              className="md:hidden bg-white dark:bg-gray-900 rounded-xl mt-3 shadow-md overflow-hidden"
             >
               <div className="py-4 space-y-2">
                 {navItems.map((item) => (
@@ -112,7 +112,7 @@ const Navbar: React.FC = () => {
                     key={item.name}
                     whileHover={{ x: 10 }}
                     onClick={() => scrollToSection(item.href)}
-                    className="block w-full text-left px-6 py-3 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-300"
+                    className="block w-full text-left px-4 py-2.5 text-gray-700 dark:text-gray-300 hover:text-sky-600 dark:hover:text-sky-400 hover:bg-sky-50 dark:hover:bg-sky-900/20 transition-all duration-300 font-medium rounded-lg"
                   >
                     {item.name}
                   </motion.button>
