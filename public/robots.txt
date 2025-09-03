@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://heetviradiya.tech/sitemap.xml
+Sitemap: https://heetviradiya.codes/sitemap.xml
 
 # Allow all major search engines
 User-agent: Googlebot
@@ -28,4 +28,4 @@ Allow: /
 # Disallow: /private/
 
 # Host directive (helps with canonicalization)
-Host: https://heetviradiya.tech
+Host: https://heetviradiya.codes

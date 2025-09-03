@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 // Configuration
-const DOMAIN = 'https://heetviradiya.tech';
+const DOMAIN = 'https://heetviradiya.codes';
 const OUTPUT_PATH = path.join(__dirname, '../public/sitemap.xml');
 
 // Import projects data (you might need to adjust this path)

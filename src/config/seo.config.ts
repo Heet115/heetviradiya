@@ -1,7 +1,7 @@
 export const seoConfig = {
   // Basic site information
   siteName: "Heet Viradiya Portfolio",
-  siteUrl: "https://heetviradiya.tech",
+  siteUrl: "https://heetviradiya.codes",
   author: "Heet Viradiya",
   
   // Default meta information
@@ -37,7 +37,7 @@ export const seoConfig = {
   
   // Open Graph default image
   defaultImage: {
-    url: "https://heetviradiya.tech/og-image.jpg",
+    url: "https://heetviradiya.codes/og-image.jpg",
     width: 1200,
     height: 630,
     alt: "Heet Viradiya - Full Stack Web Developer Portfolio"
