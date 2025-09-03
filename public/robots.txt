@@ -26,6 +26,3 @@ Allow: /
 # Disallow certain paths if needed (currently allowing all)
 # Disallow: /admin/
 # Disallow: /private/
-
-# Host directive (helps with canonicalization)
-Host: https://heetviradiya.codes
