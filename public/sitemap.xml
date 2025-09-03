@@ -4,103 +4,83 @@
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   
-  <!-- Homepage -->
   <url>
     <loc>https://heetviradiya.codes/</loc>
-    <lastmod>2025-01-03</lastmod>
+    <lastmod>2025-09-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-  </url>
-  
-  <!-- Projects Page -->
+  </url>  
   <url>
     <loc>https://heetviradiya.codes/projects</loc>
-    <lastmod>2025-01-03</lastmod>
+    <lastmod>2025-09-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-  </url>
-  
-  <!-- Individual Project Pages -->
-  <url>
-    <loc>https://heetviradiya.codes/projects/ecommerce-platform</loc>
-    <lastmod>2025-01-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://heetviradiya.codes/projects/task-management-app</loc>
-    <lastmod>2025-01-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://heetviradiya.codes/projects/weather-dashboard</loc>
-    <lastmod>2025-01-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://heetviradiya.codes/projects/social-media-analytics</loc>
-    <lastmod>2025-01-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://heetviradiya.codes/projects/mobile-banking-app</loc>
-    <lastmod>2025-01-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://heetviradiya.codes/projects/ai-content-generator</loc>
-    <lastmod>2025-01-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <!-- About Section -->
+  </url>  
   <url>
     <loc>https://heetviradiya.codes/#about</loc>
-    <lastmod>2025-01-03</lastmod>
+    <lastmod>2025-09-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-  </url>
-  
-  <!-- Skills Section -->
+  </url>  
   <url>
     <loc>https://heetviradiya.codes/#skills</loc>
-    <lastmod>2025-01-03</lastmod>
+    <lastmod>2025-09-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-  </url>
-  
-  <!-- Experience Section -->
+  </url>  
   <url>
     <loc>https://heetviradiya.codes/#experience</loc>
-    <lastmod>2025-01-03</lastmod>
+    <lastmod>2025-09-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-  </url>
-  
-  <!-- Contact Section -->
+  </url>  
   <url>
     <loc>https://heetviradiya.codes/#contact</loc>
-    <lastmod>2025-01-03</lastmod>
+    <lastmod>2025-09-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
-  </url>
-  
-  <!-- CV Download -->
+  </url>  
   <url>
     <loc>https://heetviradiya.codes/cv.pdf</loc>
-    <lastmod>2025-01-03</lastmod>
+    <lastmod>2025-09-03</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
+  </url>  
+  <url>
+    <loc>https://heetviradiya.codes/projects/ecommerce-platform</loc>
+    <lastmod>2025-09-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>  
+  <url>
+    <loc>https://heetviradiya.codes/projects/task-management-app</loc>
+    <lastmod>2025-09-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>  
+  <url>
+    <loc>https://heetviradiya.codes/projects/weather-dashboard</loc>
+    <lastmod>2025-09-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>  
+  <url>
+    <loc>https://heetviradiya.codes/projects/social-media-analytics</loc>
+    <lastmod>2025-09-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>  
+  <url>
+    <loc>https://heetviradiya.codes/projects/mobile-banking-app</loc>
+    <lastmod>2025-09-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>  
+  <url>
+    <loc>https://heetviradiya.codes/projects/ai-content-generator</loc>
+    <lastmod>2025-09-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   
 </urlset>

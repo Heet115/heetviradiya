@@ -1,5 +1,9 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Configuration
 const DOMAIN = 'https://heetviradiya.codes';
@@ -126,9 +130,7 @@ const writeSitemap = () => {
   }
 };
 
-// Run the script
-if (require.main === module) {
-  writeSitemap();
-}
+// Run the script when called directly
+writeSitemap();
 
-module.exports = { generateSitemap, writeSitemap };
+export { generateSitemap, writeSitemap };

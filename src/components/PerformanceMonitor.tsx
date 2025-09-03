@@ -82,8 +82,8 @@ const PerformanceMonitor: React.FC = () => {
               ttfb: Math.round(perfData.responseStart - perfData.requestStart),
               download: Math.round(perfData.responseEnd - perfData.responseStart),
               domParse: Math.round(perfData.domContentLoadedEventEnd - perfData.responseEnd),
-              domReady: Math.round(perfData.domContentLoadedEventEnd - perfData.navigationStart),
-              pageLoad: Math.round(perfData.loadEventEnd - perfData.navigationStart),
+              domReady: Math.round(perfData.domContentLoadedEventEnd - perfData.fetchStart),
+              pageLoad: Math.round(perfData.loadEventEnd - perfData.fetchStart),
             };
 
             // Track key metrics
