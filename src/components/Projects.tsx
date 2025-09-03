@@ -1,57 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import ProjectCard from './ProjectCard';
+import ProjectDetail from './ProjectDetail';
+import { getFeaturedProjects, getProjectById, type Project } from '../data/projects';
 
-const Projects: React.FC = () => {
-  const projects = [
-    {
-      title: 'E-Commerce Platform',
-      description: 'A full-stack e-commerce solution with React, Node.js, and Stripe integration. Features include user authentication, product management, and order processing.',
-      image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop',
-      technologies: ['React', 'Node.js', 'MongoDB', 'Stripe', 'Tailwind CSS'],
-      githubUrl: 'https://github.com',
-      liveUrl: 'https://example.com'
-    },
-    {
-      title: 'Task Management App',
-      description: 'A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.',
-      image: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=400&fit=crop',
-      technologies: ['Next.js', 'TypeScript', 'Prisma', 'Socket.io', 'PostgreSQL'],
-      githubUrl: 'https://github.com',
-      liveUrl: 'https://example.com'
-    },
-    {
-      title: 'Weather Dashboard',
-      description: 'A beautiful weather dashboard with location-based forecasts, interactive maps, and detailed weather analytics using modern APIs.',
-      image: 'https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=600&h=400&fit=crop',
-      technologies: ['Vue.js', 'Chart.js', 'OpenWeather API', 'Vuex', 'SCSS'],
-      githubUrl: 'https://github.com',
-      liveUrl: 'https://example.com'
-    },
-    {
-      title: 'Social Media Analytics',
-      description: 'A comprehensive analytics dashboard for social media metrics with data visualization, reporting, and automated insights.',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop',
-      technologies: ['React', 'D3.js', 'Python', 'Django', 'Redis'],
-      githubUrl: 'https://github.com',
-      liveUrl: 'https://example.com'
-    },
-    {
-      title: 'Mobile Banking App',
-      description: 'A secure mobile banking application with biometric authentication, transaction history, and real-time notifications.',
-      image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&h=400&fit=crop',
-      technologies: ['React Native', 'Firebase', 'Plaid API', 'Redux', 'TypeScript'],
-      githubUrl: 'https://github.com'
-    },
-    {
-      title: 'AI Content Generator',
-      description: 'An AI-powered content generation tool that helps create blog posts, social media content, and marketing copy using GPT integration.',
-      image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop',
-      technologies: ['Next.js', 'OpenAI API', 'Tailwind CSS', 'Supabase', 'Stripe'],
-      githubUrl: 'https://github.com',
-      liveUrl: 'https://example.com'
+interface ProjectsProps {
+  onNavigateToAllProjects?: () => void;
+}
+
+const Projects: React.FC<ProjectsProps> = ({ onNavigateToAllProjects }) => {
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const projects = getFeaturedProjects();
+
+  const handleProjectClick = (projectId: string) => {
+    const project = getProjectById(projectId);
+    if (project) {
+      setSelectedProject(project);
     }
-  ];
+  };
+
+  const handleBackToProjects = () => {
+    setSelectedProject(null);
+  };
+
+  if (selectedProject) {
+    return (
+      <ProjectDetail 
+        project={selectedProject} 
+        onBack={handleBackToProjects}
+      />
+    );
+  }
 
   return (
     <section id="projects" className="py-16 bg-gradient-to-br from-white to-sky-50 dark:from-gray-900 dark:to-black relative overflow-hidden">
@@ -93,7 +72,7 @@ const Projects: React.FC = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, index) => (
             <ProjectCard
-              key={project.title}
+              key={project.id}
               title={project.title}
               description={project.description}
               image={project.image}
@@ -101,6 +80,7 @@ const Projects: React.FC = () => {
               githubUrl={project.githubUrl}
               liveUrl={project.liveUrl}
               delay={index * 0.1}
+              onViewDetails={() => handleProjectClick(project.id)}
             />
           ))}
         </div>
@@ -112,10 +92,8 @@ const Projects: React.FC = () => {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="text-center mt-10"
         >
-          <motion.a
-            href="https://github.com"
-            target="_blank"
-            rel="noopener noreferrer"
+          <motion.button
+            onClick={onNavigateToAllProjects}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="btn-primary inline-flex items-center gap-2"
@@ -127,7 +105,7 @@ const Projects: React.FC = () => {
             >
               →
             </motion.span>
-          </motion.a>
+          </motion.button>
         </motion.div>
       </div>
     </section>

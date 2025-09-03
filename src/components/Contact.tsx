@@ -1,34 +1,41 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle } from 'lucide-react';
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Send,
+  CheckCircle,
+  AlertCircle,
+} from "lucide-react";
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
+    name: "",
+    email: "",
+    message: "",
   });
-  const [errors, setErrors] = useState<{[key: string]: string}>({});
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const validateForm = () => {
-    const newErrors: {[key: string]: string} = {};
+    const newErrors: { [key: string]: string } = {};
 
     if (!formData.name.trim()) {
-      newErrors.name = 'Name is required';
+      newErrors.name = "Name is required";
     }
 
     if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
+      newErrors.email = "Email is required";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email address';
+      newErrors.email = "Please enter a valid email address";
     }
 
     if (!formData.message.trim()) {
-      newErrors.message = 'Message is required';
+      newErrors.message = "Message is required";
     } else if (formData.message.trim().length < 10) {
-      newErrors.message = 'Message must be at least 10 characters long';
+      newErrors.message = "Message must be at least 10 characters long";
     }
 
     setErrors(newErrors);
@@ -37,55 +44,60 @@ const Contact: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateForm()) return;
 
     setIsSubmitting(true);
-    
+
     // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+
     setIsSubmitting(false);
     setIsSubmitted(true);
-    setFormData({ name: '', email: '', message: '' });
-    
+    setFormData({ name: "", email: "", message: "" });
+
     // Reset success message after 5 seconds
     setTimeout(() => setIsSubmitted(false), 5000);
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-    
+    setFormData((prev) => ({ ...prev, [name]: value }));
+
     // Clear error when user starts typing
     if (errors[name]) {
-      setErrors(prev => ({ ...prev, [name]: '' }));
+      setErrors((prev) => ({ ...prev, [name]: "" }));
     }
   };
 
   const contactInfo = [
     {
       icon: Mail,
-      label: 'Email',
-      value: 'hpviradiya05@gmail.com',
-      href: 'mailto:hpviradiya05@gmail.com'
+      label: "Email",
+      value: "hpviradiya05@gmail.com",
+      href: "mailto:hpviradiya05@gmail.com",
     },
     {
       icon: Phone,
-      label: 'Phone',
-      value: '+91 6355410801',
-      href: 'tel:+916355410801'
+      label: "Phone",
+      value: "+91 6355410801",
+      href: "tel:+916355410801",
     },
     {
       icon: MapPin,
-      label: 'Location',
-      value: 'San Francisco, CA',
-      href: '#'
-    }
+      label: "Location",
+      value: "Bhavnagar, Gujarat, India",
+      href: "#",
+    },
   ];
 
   return (
-    <section id="contact" className="py-16 bg-gradient-to-br from-sky-50 to-white dark:from-black dark:to-gray-900">
+    <section
+      id="contact"
+      className="py-16 bg-gradient-to-br from-sky-50 to-white dark:from-black dark:to-gray-900"
+    >
       <div className="container-max section-padding">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -102,15 +114,17 @@ const Contact: React.FC = () => {
             className="inline-flex items-center gap-2 bg-sky-100 dark:bg-sky-900/30 px-4 py-2 rounded-lg shadow-md border border-sky-200 dark:border-sky-700 mb-6"
           >
             <span className="text-lg">📧</span>
-            <span className="text-sky-600 dark:text-sky-400 font-medium text-sm">Get In Touch</span>
+            <span className="text-sky-600 dark:text-sky-400 font-medium text-sm">
+              Get In Touch
+            </span>
           </motion.div>
-          
+
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
             Let's <span className="text-gradient">Connect</span>
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Ready to discuss your project or explore collaboration opportunities? 
-            I'd love to hear from you.
+            Ready to discuss your project or explore collaboration
+            opportunities? I'd love to hear from you.
           </p>
         </motion.div>
 
@@ -128,8 +142,9 @@ const Contact: React.FC = () => {
                 Let's start a conversation
               </h3>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
-                I'm always interested in hearing about new projects and opportunities. 
-                Whether you're looking to hire or collaborate, let's connect.
+                I'm always interested in hearing about new projects and
+                opportunities. Whether you're looking to hire or collaborate,
+                let's connect.
               </p>
             </div>
 
@@ -144,10 +159,15 @@ const Contact: React.FC = () => {
                   className="flex items-center space-x-3"
                 >
                   <div className="w-10 h-10 bg-sky-100 dark:bg-sky-900/30 rounded-lg flex items-center justify-center">
-                    <info.icon size={18} className="text-sky-600 dark:text-sky-400" />
+                    <info.icon
+                      size={18}
+                      className="text-sky-600 dark:text-sky-400"
+                    />
                   </div>
                   <div>
-                    <p className="text-xs text-gray-500 dark:text-gray-400">{info.label}</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">
+                      {info.label}
+                    </p>
                     <motion.a
                       href={info.href}
                       whileHover={{ scale: 1.02 }}
@@ -176,12 +196,17 @@ const Contact: React.FC = () => {
                   className="flex items-center space-x-2 p-3 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 rounded-lg text-sm"
                 >
                   <CheckCircle size={20} />
-                  <span>Thank you! Your message has been sent successfully.</span>
+                  <span>
+                    Thank you! Your message has been sent successfully.
+                  </span>
                 </motion.div>
               )}
 
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label
+                  htmlFor="name"
+                  className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                >
                   Full Name
                 </label>
                 <input
@@ -192,8 +217,8 @@ const Contact: React.FC = () => {
                   onChange={handleChange}
                   className={`w-full px-3 py-2.5 rounded-lg border-2 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-sky-500/20 ${
                     errors.name
-                      ? 'border-red-300 dark:border-red-600 bg-red-50 dark:bg-red-900/10'
-                      : 'border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 focus:border-sky-500'
+                      ? "border-red-300 dark:border-red-600 bg-red-50 dark:bg-red-900/10"
+                      : "border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 focus:border-sky-500"
                   } text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400`}
                   placeholder="Enter your full name"
                 />
@@ -210,7 +235,10 @@ const Contact: React.FC = () => {
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                >
                   Email Address
                 </label>
                 <input
@@ -221,8 +249,8 @@ const Contact: React.FC = () => {
                   onChange={handleChange}
                   className={`w-full px-3 py-2.5 rounded-lg border-2 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-sky-500/20 ${
                     errors.email
-                      ? 'border-red-300 dark:border-red-600 bg-red-50 dark:bg-red-900/10'
-                      : 'border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 focus:border-sky-500'
+                      ? "border-red-300 dark:border-red-600 bg-red-50 dark:bg-red-900/10"
+                      : "border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 focus:border-sky-500"
                   } text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400`}
                   placeholder="Enter your email address"
                 />
@@ -239,7 +267,10 @@ const Contact: React.FC = () => {
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label
+                  htmlFor="message"
+                  className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                >
                   Message
                 </label>
                 <textarea
@@ -250,8 +281,8 @@ const Contact: React.FC = () => {
                   onChange={handleChange}
                   className={`w-full px-3 py-2.5 rounded-lg border-2 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-sky-500/20 resize-none ${
                     errors.message
-                      ? 'border-red-300 dark:border-red-600 bg-red-50 dark:bg-red-900/10'
-                      : 'border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 focus:border-sky-500'
+                      ? "border-red-300 dark:border-red-600 bg-red-50 dark:bg-red-900/10"
+                      : "border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 focus:border-sky-500"
                   } text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400`}
                   placeholder="Tell me about your project or just say hello!"
                 />
@@ -273,7 +304,7 @@ const Contact: React.FC = () => {
                 whileHover={{ scale: isSubmitting ? 1 : 1.05 }}
                 whileTap={{ scale: isSubmitting ? 1 : 0.95 }}
                 className={`w-full btn-primary flex items-center justify-center gap-2 ${
-                  isSubmitting ? 'opacity-70 cursor-not-allowed' : ''
+                  isSubmitting ? "opacity-70 cursor-not-allowed" : ""
                 }`}
               >
                 {isSubmitting ? (

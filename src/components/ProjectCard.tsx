@@ -10,6 +10,7 @@ interface ProjectCardProps {
   githubUrl?: string;
   liveUrl?: string;
   delay?: number;
+  onViewDetails?: () => void;
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({
@@ -19,7 +20,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   technologies,
   githubUrl,
   liveUrl,
-  delay = 0
+  delay = 0,
+  onViewDetails
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -75,13 +77,16 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             </motion.a>
           )}
           
-          <motion.button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            className="p-3 bg-white/20 backdrop-blur-sm rounded-lg text-white hover:bg-blue-500/30 transition-all duration-300 shadow-lg border border-white/20"
-          >
-            <Eye size={20} />
-          </motion.button>
+          {onViewDetails && (
+            <motion.button
+              onClick={onViewDetails}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              className="p-3 bg-white/20 backdrop-blur-sm rounded-lg text-white hover:bg-blue-500/30 transition-all duration-300 shadow-lg border border-white/20"
+            >
+              <Eye size={20} />
+            </motion.button>
+          )}
         </motion.div>
         
         {/* Corner badge */}
@@ -115,33 +120,47 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           ))}
         </div>
         
-        <div className="flex space-x-4 pt-3">
-          {githubUrl && (
-            <motion.a
-              href={githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.05, y: -1 }}
-              whileTap={{ scale: 0.95 }}
-              className="flex items-center space-x-2 text-gray-600 dark:text-gray-400 hover:text-sky-600 dark:hover:text-sky-400 transition-all duration-300 font-medium"
-            >
-              <Github size={16} />
-              <span className="text-sm">Code</span>
-            </motion.a>
-          )}
+        <div className="flex justify-between items-center pt-3">
+          <div className="flex space-x-4">
+            {githubUrl && (
+              <motion.a
+                href={githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.05, y: -1 }}
+                whileTap={{ scale: 0.95 }}
+                className="flex items-center space-x-2 text-gray-600 dark:text-gray-400 hover:text-sky-600 dark:hover:text-sky-400 transition-all duration-300 font-medium"
+              >
+                <Github size={16} />
+                <span className="text-sm">Code</span>
+              </motion.a>
+            )}
+            
+            {liveUrl && (
+              <motion.a
+                href={liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.05, y: -1 }}
+                whileTap={{ scale: 0.95 }}
+                className="flex items-center space-x-2 text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-all duration-300 font-medium"
+              >
+                <ExternalLink size={16} />
+                <span className="text-sm">Demo</span>
+              </motion.a>
+            )}
+          </div>
           
-          {liveUrl && (
-            <motion.a
-              href={liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+          {onViewDetails && (
+            <motion.button
+              onClick={onViewDetails}
               whileHover={{ scale: 1.05, y: -1 }}
               whileTap={{ scale: 0.95 }}
-              className="flex items-center space-x-2 text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-all duration-300 font-medium"
+              className="flex items-center space-x-2 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 font-medium"
             >
-              <ExternalLink size={16} />
-              <span className="text-sm">Demo</span>
-            </motion.a>
+              <Eye size={16} />
+              <span className="text-sm">Details</span>
+            </motion.button>
           )}
         </div>
       </div>

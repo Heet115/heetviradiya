@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Code, Palette, Server, Smartphone } from 'lucide-react';
+import { Code, Palette, Server, Smartphone, Zap } from 'lucide-react';
 import SkillCard from './SkillCard';
 
 const Skills: React.FC = () => {
@@ -54,7 +54,7 @@ const Skills: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="inline-flex items-center gap-2 bg-sky-100 dark:bg-sky-900/30 px-4 py-2 rounded-lg shadow-md border border-sky-200 dark:border-sky-700 mb-6"
           >
-            <span className="text-lg">⚡</span>
+            <Zap className="w-5 h-5 text-sky-600 dark:text-sky-400" />
             <span className="text-sky-600 dark:text-sky-400 font-medium text-sm">Skills & Expertise</span>
           </motion.div>
           

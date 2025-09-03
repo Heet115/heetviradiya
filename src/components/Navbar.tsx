@@ -3,7 +3,13 @@ import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ThemeSelector from './ThemeSelector';
 
-const Navbar: React.FC = () => {
+interface NavbarProps {
+  onNavigateToProjects?: () => void;
+  onNavigateToHome?: () => void;
+  onOpenThemePreferences?: () => void;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ onNavigateToProjects, onNavigateToHome, onOpenThemePreferences }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -25,9 +31,25 @@ const Navbar: React.FC = () => {
   }, []);
 
   const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    if (href === '#projects' && onNavigateToProjects) {
+      onNavigateToProjects();
+      setIsOpen(false);
+      return;
+    }
+    
+    if (onNavigateToHome) {
+      onNavigateToHome();
+      setTimeout(() => {
+        const element = document.querySelector(href);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
     }
     setIsOpen(false);
   };
@@ -47,7 +69,7 @@ const Navbar: React.FC = () => {
           <motion.div
             whileHover={{ scale: 1.05 }}
             className="text-2xl font-black text-gradient cursor-pointer"
-            onClick={() => scrollToSection('#home')}
+            onClick={() => onNavigateToHome ? onNavigateToHome() : scrollToSection('#home')}
           >
             Heet.dev
           </motion.div>
@@ -65,12 +87,12 @@ const Navbar: React.FC = () => {
                 {item.name}
               </motion.button>
             ))}
-            <ThemeSelector />
+            <ThemeSelector onOpenPreferences={onOpenThemePreferences} />
           </div>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center space-x-4">
-            <ThemeSelector />
+            <ThemeSelector onOpenPreferences={onOpenThemePreferences} />
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
