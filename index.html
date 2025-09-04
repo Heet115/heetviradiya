@@ -4,17 +4,35 @@
 <head>
   <meta charset="UTF-8" />
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-E8NJ1CDX99"></script>
+  <!-- Defer Google Analytics loading -->
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-
-    // Updated config call with object
-    gtag('config', 'G-E8NJ1CDX99', {
-      send_page_view: true // ensures a pageview is tracked
-    });
+    // Lazy load Google Analytics after page interaction or 3 seconds
+    function loadGoogleAnalytics() {
+      if (window.gtag) return; // Already loaded
+      
+      const script = document.createElement('script');
+      script.async = true;
+      script.src = 'https://www.googletagmanager.com/gtag/js?id=G-E8NJ1CDX99';
+      document.head.appendChild(script);
+      
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      window.gtag = gtag;
+      gtag('js', new Date());
+      gtag('config', 'G-E8NJ1CDX99', {
+        send_page_view: true
+      });
+    }
+    
+    // Load on user interaction or after delay
+    const events = ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart', 'click'];
+    const loadGA = () => {
+      loadGoogleAnalytics();
+      events.forEach(event => document.removeEventListener(event, loadGA, true));
+    };
+    
+    events.forEach(event => document.addEventListener(event, loadGA, true));
+    setTimeout(loadGA, 3000); // Fallback after 3 seconds
   </script>
 
 
@@ -91,9 +109,14 @@
   <link rel="dns-prefetch" href="//fonts.gstatic.com" />
   <link rel="dns-prefetch" href="//vercel.com" />
   <link rel="dns-prefetch" href="//github.com" />
-
-  <!-- Fonts with display=swap for better performance -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+  <link rel="dns-prefetch" href="//www.googletagmanager.com" />
+  
+  <!-- Preload critical resources -->
+  <link rel="preload" href="/src/main.tsx" as="script" />
+  <link rel="preload" href="/src/index.css" as="style" />
+  
+  <!-- Fonts with display=swap for better performance - optimized subset -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap&subset=latin"
     rel="stylesheet" />
 
   <!-- Structured Data - JSON-LD -->

@@ -1,13 +1,13 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext, memo, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ThemeContext } from "../contexts/ThemeContext";
 import { Hand } from "lucide-react";
 
-export default function WelcomeOverlay({
-  onFinish,
-}: {
+interface WelcomeOverlayProps {
   onFinish: () => void;
-}) {
+}
+
+const WelcomeOverlay = memo(({ onFinish }: WelcomeOverlayProps) => {
   const [displayText, setDisplayText] = useState("");
   const [showOverlay, setShowOverlay] = useState(true);
   const [showSubtitle, setShowSubtitle] = useState(false);
@@ -17,6 +17,13 @@ export default function WelcomeOverlay({
   
   const fullText = "Heet Viradiya";
   const subtitle = "Web Developer & UI/UX Designer";
+
+  const handleFinish = useCallback(() => {
+    setShowOverlay(false);
+    setTimeout(() => {
+      onFinish();
+    }, 1200); // Matches exit animation duration
+  }, [onFinish]);
 
   useEffect(() => {
     let i = 0;
@@ -33,16 +40,13 @@ export default function WelcomeOverlay({
         
         // Wait before fade out
         setTimeout(() => {
-          setShowOverlay(false);
-          setTimeout(() => {
-            onFinish();
-          }, 1200); // Matches exit animation duration
+          handleFinish();
         }, 2500);
       }
     }, 120);
 
     return () => clearInterval(typingInterval);
-  }, [onFinish]);
+  }, [handleFinish]);
 
   return (
     <AnimatePresence>
@@ -253,4 +257,8 @@ export default function WelcomeOverlay({
       )}
     </AnimatePresence>
   );
-}
+});
+
+WelcomeOverlay.displayName = 'WelcomeOverlay';
+
+export default WelcomeOverlay;

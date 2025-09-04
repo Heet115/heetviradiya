@@ -1,20 +1,31 @@
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense, memo } from 'react';
 import { ThemeProvider } from './contexts/ThemeContext';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import About from './components/About';
-import Skills from './components/Skills';
-import Projects from './components/Projects';
-import ProjectsPage from './components/ProjectsPage';
-import Experience from './components/Experience';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
 import WelcomeOverlay from './components/WelcomeOverlay';
-import ThemePreferences from './components/ThemePreferences';
 import StructuredData from './components/StructuredData';
+import PerformanceMonitor from './components/PerformanceMonitor';
 import { useSEO } from './hooks/useSEO';
+import { usePerformance } from './hooks/usePerformance';
 import { getPageSEO } from './utils/seo';
+
+// Lazy load non-critical components for better initial load performance
+const About = lazy(() => import('./components/About'));
+const Skills = lazy(() => import('./components/Skills'));
+const Projects = lazy(() => import('./components/Projects'));
+const ProjectsPage = lazy(() => import('./components/ProjectsPage'));
+const Experience = lazy(() => import('./components/Experience'));
+const Contact = lazy(() => import('./components/Contact'));
+const Footer = lazy(() => import('./components/Footer'));
+const ThemePreferences = lazy(() => import('./components/ThemePreferences'));
+
+// Loading component for better UX
+const SectionLoader = memo(() => (
+  <div className="flex justify-center items-center py-12">
+    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-sky-500"></div>
+  </div>
+));
 
 function App() {
   const [currentPage, setCurrentPage] = useState<'home' | 'projects'>('home');
@@ -24,6 +35,9 @@ function App() {
   // SEO optimization based on current page
   const seoData = getPageSEO(currentPage);
   useSEO(seoData);
+  
+  // Performance monitoring
+  usePerformance();
 
   // Add performance monitoring and analytics
   useEffect(() => {
@@ -48,6 +62,9 @@ function App() {
 
   return (
     <ThemeProvider>
+      {/* Performance Monitoring */}
+      <PerformanceMonitor />
+      
       {/* Structured Data */}
       <StructuredData type="person" />
       <StructuredData type="website" />
@@ -64,13 +81,25 @@ function App() {
             />
             <main>
               <Hero />
-              <About />
-              <Skills />
-              <Projects onNavigateToAllProjects={() => setCurrentPage('projects')} />
-              <Experience />
-              <Contact />
+              <Suspense fallback={<SectionLoader />}>
+                <About />
+              </Suspense>
+              <Suspense fallback={<SectionLoader />}>
+                <Skills />
+              </Suspense>
+              <Suspense fallback={<SectionLoader />}>
+                <Projects onNavigateToAllProjects={() => setCurrentPage('projects')} />
+              </Suspense>
+              <Suspense fallback={<SectionLoader />}>
+                <Experience />
+              </Suspense>
+              <Suspense fallback={<SectionLoader />}>
+                <Contact />
+              </Suspense>
             </main>
-            <Footer />
+            <Suspense fallback={<SectionLoader />}>
+              <Footer />
+            </Suspense>
           </>
         ) : (
           <>
@@ -78,15 +107,21 @@ function App() {
               onNavigateToHome={() => setCurrentPage('home')}
               onOpenThemePreferences={() => setShowThemePreferences(true)}
             />
-            <ProjectsPage />
+            <Suspense fallback={<SectionLoader />}>
+              <ProjectsPage />
+            </Suspense>
           </>
         )}
         
         {/* Theme Preferences Modal */}
-        <ThemePreferences 
-          isOpen={showThemePreferences} 
-          onClose={() => setShowThemePreferences(false)} 
-        />
+        {showThemePreferences && (
+          <Suspense fallback={null}>
+            <ThemePreferences 
+              isOpen={showThemePreferences} 
+              onClose={() => setShowThemePreferences(false)} 
+            />
+          </Suspense>
+        )}
       </div>
     </ThemeProvider>
   );

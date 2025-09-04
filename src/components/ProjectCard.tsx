@@ -59,6 +59,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               className="p-3 bg-white/20 backdrop-blur-sm rounded-lg text-white hover:bg-sky-500/30 transition-all duration-300 shadow-lg border border-white/20"
+              aria-label={`View ${title} source code on GitHub`}
             >
               <Github size={20} />
             </motion.a>
@@ -72,6 +73,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               className="p-3 bg-white/20 backdrop-blur-sm rounded-lg text-white hover:bg-gray-700/30 transition-all duration-300 shadow-lg border border-white/20"
+              aria-label={`View ${title} live demo`}
             >
               <ExternalLink size={20} />
             </motion.a>
@@ -83,6 +85,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               className="p-3 bg-white/20 backdrop-blur-sm rounded-lg text-white hover:bg-blue-500/30 transition-all duration-300 shadow-lg border border-white/20"
+              aria-label={`View ${title} project details`}
             >
               <Eye size={20} />
             </motion.button>

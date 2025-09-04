@@ -6,11 +6,17 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    /* Optimize font loading */
+    font-display: swap;
   }
   
   body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
     transition: background-color 0.3s ease, color 0.3s ease;
+    /* Improve text rendering */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
   
   /* Dark mode support */
@@ -115,15 +121,11 @@
   }
   
   .floating-animation {
-    animation: float 4s ease-in-out infinite;
-  }
-  
-  .pulse-glow {
-    @apply animate-pulse shadow-md shadow-sky-500/30;
+    animation: float 6s ease-in-out infinite;
   }
 }
 
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+  50% { transform: translateY(-8px); }
 }

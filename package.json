@@ -4,12 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "node scripts/generate-sitemap.js && tsc -b && vite build",
+    "dev": "vite --host",
+    "build": "node scripts/generate-sitemap.js && tsc -b && vite build && node scripts/optimize-build.js",
     "lint": "eslint .",
     "preview": "vite preview",
-    "generate-sitemap": "node scripts/generate-sitemap.js",
-    "seo-audit": "echo 'Run lighthouse audit and check Google Search Console for SEO performance'"
+    "generate-sitemap": "node scripts/generate-sitemap.js"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.12",

@@ -1,0 +1,45 @@
+// Extract and inline critical CSS for above-the-fold content
+export const inlineCriticalCSS = () => {
+  const criticalCSS = `
+    /* Critical CSS for above-the-fold content */
+    html { scroll-behavior: smooth; font-display: swap; }
+    body { 
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+      margin: 0; padding: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    .hero-loading {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 50%, #eff6ff 100%);
+    }
+    .spinner {
+      width: 32px; height: 32px;
+      border: 2px solid #e5e7eb;
+      border-top: 2px solid #0ea5e9;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  `;
+
+  const style = document.createElement('style');
+  style.textContent = criticalCSS;
+  document.head.appendChild(style);
+};
+
+// Remove critical CSS after main CSS loads
+export const removeCriticalCSS = () => {
+  const criticalStyles = document.querySelectorAll('style');
+  criticalStyles.forEach(style => {
+    if (style.textContent?.includes('hero-loading')) {
+      style.remove();
+    }
+  });
+};

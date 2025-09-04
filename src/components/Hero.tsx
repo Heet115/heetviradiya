@@ -1,29 +1,29 @@
-import React from "react";
+import React, { memo, useCallback } from "react";
 import { Download, Mail, Github, Linkedin, Hand } from "lucide-react";
 import { motion } from "framer-motion";
 
-const Hero: React.FC = () => {
-  const handleDownloadCV = () => {
+const Hero: React.FC = memo(() => {
+  const handleDownloadCV = useCallback(() => {
     // Create a link to download CV (you'll need to add your CV file to public folder)
     const link = document.createElement("a");
     link.href = "/cv.pdf"; // Add your CV file to public folder
     link.download = "Heet_Viradiya_CV.pdf";
     link.click();
-  };
+  }, []);
 
-  const scrollToContact = () => {
+  const scrollToContact = useCallback(() => {
     const element = document.querySelector("#contact");
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
-  };
+  }, []);
 
-  const scrollToSection = (href: string) => {
+  const scrollToSection = useCallback((href: string) => {
     const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
-  };
+  }, []);
 
   return (
     <section
@@ -161,11 +161,12 @@ const Hero: React.FC = () => {
       </div>
 
       {/* Scroll indicator */}
-      <motion.div
-        className="absolute bottom-6 left-1/2 transform -translate-x-1/2 cursor-pointer"
+      <motion.button
+        className="absolute bottom-6 left-1/2 transform -translate-x-1/2 cursor-pointer focus:outline-none focus:ring-2 focus:ring-sky-500/50 rounded-full"
         animate={{ y: [0, 8, 0] }}
         transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
         onClick={() => scrollToSection("#about")}
+        aria-label="Scroll to About section"
       >
         <div className="w-6 h-10 border-2 border-sky-500 dark:border-sky-400 rounded-full flex justify-center bg-white/30 dark:bg-gray-800/30 backdrop-blur-sm shadow-md">
           <motion.div
@@ -174,9 +175,11 @@ const Hero: React.FC = () => {
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           ></motion.div>
         </div>
-      </motion.div>
+      </motion.button>
     </section>
   );
-};
+});
+
+Hero.displayName = 'Hero';
 
 export default Hero;
