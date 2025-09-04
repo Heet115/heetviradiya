@@ -63,7 +63,7 @@ export const trackThemeUsage = (theme: Theme, resolvedTheme: ResolvedTheme): voi
         timestamp: new Date().toISOString(),
       });
     }
-  } catch (error) {
+  } catch {
     // Silently fail - analytics shouldn't break the app
   }
 };

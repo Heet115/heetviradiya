@@ -124,8 +124,7 @@ export const seoConfig = {
   
   // Analytics and tracking
   analytics: {
-    googleAnalytics: "G-XXXXXXXXXX",
-    googleTagManager: "GTM-XXXXXXX",
+    googleAnalytics: "G-E8NJ1CDX99",
     vercelAnalytics: true,
     vercelSpeedInsights: true
   },

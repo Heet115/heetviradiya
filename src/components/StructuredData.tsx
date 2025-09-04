@@ -9,7 +9,7 @@ interface StructuredDataProps {
 const StructuredData: React.FC<StructuredDataProps> = ({ type, data }) => {
   useEffect(() => {
     let structuredData;
-    let scriptId = `structured-data-${type}`;
+    const scriptId = `structured-data-${type}`;
 
     // Remove existing structured data of this type
     const existingScript = document.getElementById(scriptId);
