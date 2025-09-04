@@ -5,7 +5,7 @@ const PerformanceMonitor = () => {
     // Web Vitals monitoring
     const reportWebVitals = (metric: any) => {
       // In production, send to analytics
-      console.log(metric);
+      // Metric data available for analytics service
     };
 
     // Largest Contentful Paint (LCP)

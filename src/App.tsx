@@ -47,7 +47,7 @@ function App() {
         setTimeout(() => {
           const perfData = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
           if (perfData) {
-            console.log('Page Load Time:', perfData.loadEventEnd - perfData.loadEventStart);
+            // Page load time data available for analytics
           }
         }, 0);
       });

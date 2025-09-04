@@ -9,19 +9,15 @@ export const usePerformance = () => {
           // Log performance metrics for debugging
           if (entry.entryType === 'navigation') {
             const navEntry = entry as PerformanceNavigationTiming;
-            console.log('Navigation timing:', {
-              domContentLoaded: navEntry.domContentLoadedEventEnd - navEntry.domContentLoadedEventStart,
-              loadComplete: navEntry.loadEventEnd - navEntry.loadEventStart,
-              firstPaint: navEntry.responseEnd - navEntry.requestStart,
-            });
+            // Navigation timing data available for analytics
           }
           
           if (entry.entryType === 'largest-contentful-paint') {
-            console.log('LCP:', entry.startTime);
+            // LCP data available for analytics
           }
           
           if (entry.entryType === 'first-input') {
-            console.log('FID:', (entry as PerformanceEventTiming).processingStart - entry.startTime);
+            // FID data available for analytics
           }
         }
       });
