@@ -8,7 +8,6 @@ export const usePerformance = () => {
         for (const entry of list.getEntries()) {
           // Log performance metrics for debugging
           if (entry.entryType === 'navigation') {
-            const navEntry = entry as PerformanceNavigationTiming;
             // Navigation timing data available for analytics
           }
           

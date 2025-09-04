@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 const PerformanceMonitor = () => {
   useEffect(() => {
     // Web Vitals monitoring
-    const reportWebVitals = (metric: any) => {
+    const reportWebVitals = (_metric: any) => {
       // In production, send to analytics
       // Metric data available for analytics service
     };
